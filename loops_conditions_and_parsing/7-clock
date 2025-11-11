@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# Prints hours 1-12 and lists minutes 1-59 for each hour
+for i in $(seq 1 12); do
+    echo "Hour: $i"
+    for y in $(seq 1 59); do
+        echo "$y" 
+    done
+done
