@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+#Prints "Best School" 10 times, but says "good luck" at 4 and "bad luck" at 8
 i=1;
 while ((i<=10)); 
     do
