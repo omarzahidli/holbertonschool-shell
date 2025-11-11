@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 #Loops through all files in the current directory and prints each filename with digits and dashes removed
-for i in $(ls); do echo "$i" | tr '[0-9]-' ' '; done
+for i in "$(ls)"; do echo "$i" | tr '[0-9]-' ' '; done
