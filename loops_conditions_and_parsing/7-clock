@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Prints hours 1–12 and lists minutes 1–59 for each hour
-i=1;
+i=0;
 while ((i<=12)); do
     echo "Hour: $i"
     y=1;
