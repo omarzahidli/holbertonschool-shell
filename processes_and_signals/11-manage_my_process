@@ -4,7 +4,7 @@ if [[ -z "$1" ]]; then
     echo "Usage: manage_my_process {start|stop|restart}"
     exit 1
 fi
-if [[ $1 == "start" ]]; then
+if [[ $1 == "start" && ! -s "/var/run/my_process.pid" ]]; then
     echo "manage_my_process started"
     bash manage_my_process &
 elif [[ $1 == "stop" ]]; then
