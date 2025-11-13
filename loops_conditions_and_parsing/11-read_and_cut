@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+#Display username, user ID, and home directory of all users from /etc/passwd
+cut -d: -f1,3,6 /etc/passwd
