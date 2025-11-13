@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+#Printing word till Ctrl+C
+echo "To infinity and beyond"
+sleep 2;
+done
