@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+#This is also
 echo $$ > "/var/run/my_process.pid"
 while ((1 > 0)); do
         echo "I am alive!" >> /tmp/my_process
