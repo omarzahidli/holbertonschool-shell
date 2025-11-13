@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 #Printing word till Ctrl+C
+while ((1>0)); do
 echo "To infinity and beyond"
 sleep 2;
 done
