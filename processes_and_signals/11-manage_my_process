@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 #This is hard script
 if [[ -z "$1" ]]; then
+    echo "Usage: manage_my_process {start|stop|restart}"
     exit 1
 fi
 if [[ $1 == "start" ]]; then
