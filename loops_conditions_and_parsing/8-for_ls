@@ -1,3 +1,9 @@
 #!/usr/bin/env bash
 #Loops through all files in the current directory and prints each filename with digits and dashes removed
-for i in *; do echo "$i" | tr '[0-9]-' ' '; done
+for item in *; do
+    if [[ "$item" == *-* ]]; then
+        echo "${item#*-}"
+    else
+        echo "$item"
+    fi
+done
