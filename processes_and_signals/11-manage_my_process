@@ -13,7 +13,7 @@ case "$1" in
         ;;
     stop)
         if [[ -f "$PID_FILE" ]]; then
-            kill -9 "$(cat "$PID_FILE")" 2>/dev/null
+            kill -9 "$(cat "$PID_FILE")" 2>/dev/null 2>&1
             rm -f "$PID_FILE"
         fi
         echo "manage_my_process stopped"
