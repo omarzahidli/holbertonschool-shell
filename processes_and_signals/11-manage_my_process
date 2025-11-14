@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # 11-manage_my_process
 PID_FILE="/var/run/my_process.pid"
 PROCESS_SCRIPT="/full/path/to/manage_my_process"  # <-- Replace with full path
