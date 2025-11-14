@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-#This is hard Script
+#This is hard Scripot
 PIDFILE="/var/run/my_process.pid"
 
 case "$1" in
@@ -14,10 +14,6 @@ case "$1" in
         ;;
     
     stop)
-        if [[ ! -e "$PIDFILE" ]]; then
-            echo "manage_my_process not running"
-            exit 1
-        fi
         kill -9 "$(cat "$PIDFILE")"
         rm -f "$PIDFILE"
         echo "manage_my_process stopped"
