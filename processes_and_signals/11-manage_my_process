@@ -1,24 +1,20 @@
 #!/usr/bin/env bash
 #This is hard script
 
-PID="/var/run/my_process.pid"
-
-if [[ $1 == "start" && ! -e "$PID" ]]; then
+if [[ $1 == "start" && ! -e "/var/run/my_process.pid" ]]; then
     echo "manage_my_process started"
     bash manage_my_process &
-    echo $! > "$PID"
 
 elif [[ $1 == "stop" ]]; then
-    kill -9 "$(cat "$PID")"
-    rm -f "$PID"
-    echo "manage_my_process stopped"
+    kill -9 "$(cat "/var/run/my_process.pid")"
+    rm -f "/var/run/my_process.pid"
+    echo 'manage_my_process stopped'
 
-elif [[ $1 == "restart" && -e "$PID" ]]; then
-    kill -9 "$(cat "$PID")"
-    rm -f "$PID"
+elif [[ $1 == "restart" && ! -e "/var/run/my_process.pid" ]]; then
+    kill -9 "$(cat "/var/run/my_process.pid")"
+    rm -f "/var/run/my_process.pid"
     echo "manage_my_process restarted"
     bash manage_my_process &
-    echo $! > "$PID"
 
 else
     echo "Usage: manage_my_process {start|stop|restart}"

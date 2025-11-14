@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 #This code runs forever
+echo $! >> "/var/run/my_process.pid"
 while true; do
     echo "I am alive"
     sleep 1
