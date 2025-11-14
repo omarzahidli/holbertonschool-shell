@@ -1,7 +1,7 @@
-#!/usr/bin/env bash
+#!/usr/bin/env bash 
 # 11-manage_my_process
 
-PID_FILE="/var/run/my_process.pid"
+PID_FILE="/tmp/my_process.pid"   # Use /tmp instead of /var/run
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 PROCESS_SCRIPT="$SCRIPT_DIR/manage_my_process"
 
