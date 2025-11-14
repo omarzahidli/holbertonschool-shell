@@ -1,28 +1,29 @@
-#!/usr/bin/env bash
+#!/bin/bash
 # 11-manage_my_process
+
 PID_FILE="/var/run/my_process.pid"
-PROCESS_SCRIPT="/full/path/to/manage_my_process"  # <-- Replace with full path
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+PROCESS_SCRIPT="$SCRIPT_DIR/manage_my_process"
 
 case "$1" in
     start)
-        bash "$PROCESS_SCRIPT" &
+        bash "$PROCESS_SCRIPT" >/dev/null 2>&1 &
         echo $! > "$PID_FILE"
         echo "manage_my_process started"
         ;;
     stop)
         if [[ -f "$PID_FILE" ]]; then
-            kill -9 "$(cat "$PID_FILE")"
+            kill -9 "$(cat "$PID_FILE")" 2>/dev/null
             rm -f "$PID_FILE"
-        else
-	    echo "manage_my_process stopped"
         fi
+        echo "manage_my_process stopped"
         ;;
     restart)
         if [[ -f "$PID_FILE" ]]; then
-            kill -9 "$(cat "$PID_FILE")"
+            kill -9 "$(cat "$PID_FILE")" 2>/dev/null
             rm -f "$PID_FILE"
         fi
-        bash "$PROCESS_SCRIPT" &
+        bash "$PROCESS_SCRIPT" >/dev/null 2>&1 &
         echo $! > "$PID_FILE"
         echo "manage_my_process restarted"
         ;;
