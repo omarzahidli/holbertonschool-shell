@@ -13,14 +13,14 @@ case "$1" in
         ;;
     stop)
         if [[ -f "$PID_FILE" ]]; then
-            kill -9 "$(cat "$PID_FILE")" 2>/dev/null
+            kill -9 "$(sudo cat "$PID_FILE")" 2>/dev/null
             rm -f "$PID_FILE"
         fi
         echo "manage_my_process stopped"
         ;;
     restart)
         if [[ -f "$PID_FILE" ]]; then
-            kill -9 "$(cat "$PID_FILE")" 2>/dev/null
+            kill -9 "$(sudo cat "$PID_FILE")" 2>/dev/null
             rm -f "$PID_FILE"
         fi
         bash "$PROCESS_SCRIPT" >/dev/null 2>&1 &
