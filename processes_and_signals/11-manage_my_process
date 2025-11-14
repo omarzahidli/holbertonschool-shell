@@ -1,22 +1,33 @@
-#!/usr/bin/env bash
-#This is hard script
+#!/bin/bash
+# 11-manage_my_process
+PID_FILE="/var/run/my_process.pid"
+PROCESS_SCRIPT="/full/path/to/manage_my_process"  # <-- Replace with full path
 
-if [[ $1 == "start" && ! -e "/var/run/my_process.pid" ]]; then
-    echo "manage_my_process started"
-    bash manage_my_process &
-
-elif [[ $1 == "stop" ]]; then
-    kill -9 "$(cat "/var/run/my_process.pid")"
-    rm -f "/var/run/my_process.pid"
-    echo 'manage_my_process stopped'
-
-elif [[ $1 == "restart" ]]; then
-    kill -9 "$(cat "/var/run/my_process.pid")"
-    rm -f "/var/run/my_process.pid"
-    echo "manage_my_process restarted"
-    bash manage_my_process &
-
-else
-    echo "Usage: manage_my_process {start|stop|restart}"
-    exit 1
-fi
+case "$1" in
+    start)
+        bash "$PROCESS_SCRIPT" &
+        echo $! > "$PID_FILE"
+        echo "manage_my_process started"
+        ;;
+    stop)
+        if [[ -f "$PID_FILE" ]]; then
+            kill -9 "$(cat "$PID_FILE")"
+            rm -f "$PID_FILE"
+            echo "manage_my_process stopped"
+        else
+            echo "PID file not found. Is the process running?"
+        fi
+        ;;
+    restart)
+        if [[ -f "$PID_FILE" ]]; then
+            kill -9 "$(cat "$PID_FILE")"
+            rm -f "$PID_FILE"
+        fi
+        bash "$PROCESS_SCRIPT" &
+        echo $! > "$PID_FILE"
+        echo "manage_my_process restarted"
+        ;;
+    *)
+        echo "Usage: manage_my_process {start|stop|restart}"
+        ;;
+esac

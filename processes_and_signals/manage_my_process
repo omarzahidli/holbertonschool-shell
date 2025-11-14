@@ -1,7 +1,7 @@
-#!/usr/bin/env bash
-#This code runs forever
-echo $! >> "/var/run/my_process.pid"
+#!/bin/bash
+# manage_my_process
+
 while true; do
-    echo "I am alive"
-    sleep 1
+    echo "I am alive!" >> /tmp/my_process
+    sleep 2
 done
