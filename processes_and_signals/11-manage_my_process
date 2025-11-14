@@ -7,23 +7,23 @@ PROCESS_SCRIPT="$SCRIPT_DIR/manage_my_process"
 
 case "$1" in
     start)
-        sudo bash "$PROCESS_SCRIPT" >/dev/null 2>&1 &
+        bash "$PROCESS_SCRIPT" >/dev/null 2>&1 &
         echo $! > "$PID_FILE"
         echo "manage_my_process started"
         ;;
     stop)
         if [[ -f "$PID_FILE" ]]; then
-            sudo kill -9 "$(cat "$PID_FILE")" 2>/dev/null
-            sudo rm -f "$PID_FILE"
+            kill -9 "$(cat "$PID_FILE")" 2>/dev/null
+            rm -f "$PID_FILE"
         fi
         echo "manage_my_process stopped"
         ;;
     restart)
         if [[ -f "$PID_FILE" ]]; then
-            sudo kill -9 "$(cat "$PID_FILE")" 2>/dev/null
-            sudo rm -f "$PID_FILE"
+            kill -9 "$(cat "$PID_FILE")" 2>/dev/null
+            rm -f "$PID_FILE"
         fi
-        sudo bash "$PROCESS_SCRIPT" >/dev/null 2>&1 &
+        bash "$PROCESS_SCRIPT" >/dev/null 2>&1 &
         echo $! > "$PID_FILE"
         echo "manage_my_process restarted"
         ;;
